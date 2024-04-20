@@ -1,54 +1,89 @@
-![O Conhecimento inclui](./docs/assets/logogg.png)
+# RANZINZA PLATFORM
 
-📚 Apresentando o iTeacher.app - Conectando Professores Particulares ao Mundo do Conhecimento 📚
+## DOCUMENTAÇÃO
+## Arquitetura
 
-Você, professor particular extraordinário, que busca ampliar sua presença no mundo digital e conectar-se com alunos
-ávidos por conhecimento, temos o prazer de apresentar o iTeacher.app, nossa inovadora Plataforma Multilateral para
-Professores Particulares!
+ > [Lean Architecture](./docs/concepts/lean-architecture.md)
 
-🚀 A Vantagem da Conexão 🚀
+ ## Design Pattern
+ > [DTOs](./docs/concepts/dtos-pattern.md)
 
-O iTeacher.app foi criado com o objetivo de unir mentes brilhantes e curiosas em um ambiente virtual inspirador.
-Acreditamos que cada professor tem um talento único a oferecer, e nossa missão é proporcionar o cenário ideal para que
-você possa compartilhar seus conhecimentos com o mundo.
+ > [Service Pattern](./docs/concepts/service-pattern.md)
 
-💡 Amplie seu Alcance 💡
+ > [Repository Pattern](./docs/concepts/repository-pattern.md)
 
-Chega de limitações geográficas! Com o iTeacher.app, você terá acesso a alunos de diversas regiões, culturas e línguas,
-permitindo que sua paixão pelo ensino alcance um público global. Torne-se um educador internacional e seja reconhecido
-pelo seu impacto transformador.
 
-📚 Diversidade de Disciplinas 📚
+## Principles
+> [Single Responsibility Principle](./docs/concepts/single-responsibility-principle.md)
 
-Seja você um mestre em Matemática, um guru da Língua Inglesa ou um especialista em Arte, o iTeacher.app abrange uma
-ampla variedade de disciplinas acadêmicas e de desenvolvimento pessoal. Aqui, você encontrará estudantes de todas as
-idades e níveis de conhecimento, proporcionando uma experiência de ensino gratificante e enriquecedora.
+>[Dependency Inversion Principle](./docs/concepts/dependency-inversion-principle.md) 
+### Gerar documentação
+```bash
+npm run doc
+```
 
-🤝 Comunidade Colaborativa 🤝
+## AMBIENTE DE DESENVOLVIMENTO
+> Adicionar o domínio ao final arquivo hosts "/etc/hosts¨
+```BASH
+sudo nano /etc/hosts
+```
+```bash
+127.0.0.1       rotta.api.local
 
-No iTeacher.app, valorizamos a troca de conhecimentos entre colegas. Faça parte de uma comunidade de professores
-comprometidos, onde você pode compartilhar ideias, estratégias pedagógicas e se beneficiar de um aprendizado contínuo.
-Juntos, construiremos um ambiente colaborativo para elevar o nível do ensino particular.
+```
+> Cria os hooks do huskyjs
+```bash
+npm run prepare
+```
 
-💻 Tecnologia Avançada 💻
+> Sobe os docker com ambiente de desenvolvimento
+```bash
+docker compose down && docker compose up -d
+```
 
-O iTeacher.app foi desenvolvido com as mais modernas tecnologias para proporcionar uma experiência de ensino e
-aprendizado de primeira linha. Ferramentas interativas, recursos multimídia e um ambiente seguro para as aulas virtuais
-garantirão uma conexão eficiente e agradável com seus alunos.
+## NOVA VARIÁVEL DE AMBIENTE
 
-🏆 Destaque-se na Multidão 🏆
+>[Nova variável de ambiente](./docs/how-to-make/environment-variables.md) 
 
-Na iTeacher.app, você terá a oportunidade de criar um perfil personalizado que destaca suas qualificações, experiências
-e metodologias de ensino únicas. Atraia alunos entusiasmados que estejam alinhados com o seu estilo e conquiste uma base
-de estudantes leais.
+## NOVA FEATURE
+>[Novo módulo](./docs/how-to-make/new-module.md)
 
-🌟 Sua Jornada Começa Aqui 🌟
+>[Novo DTO](./docs/how-to-make/new-dto.md)
 
-Não perca tempo! Junte-se a nós no iTeacher.app e abra portas para um mundo de oportunidades de ensino. Seja parte de
-uma revolução educacional que transcende fronteiras e inspire a próxima geração de aprendizes.
+>[Novo Resolver](./docs/how-to-make/new-resolver.md) 
 
-Entre em contato conosco hoje mesmo e faça parte dessa jornada extraordinária!
+>[Novo Service](./docs/how-to-make/new-service.md)
 
-[contato@iteacher.app]
+>[Novo Erro](./docs/how-to-make/new-service.md)
 
-Seja bem-vindo(a) ao futuro do ensino particular! 🚀📚💡
+>[Novo Model](./docs/how-to-make/new-model.md)
+
+>[Novo Repository](./docs/how-to-make/new-repository.md) 
+
+## Framework
+> NestJS
+> 
+> https://nestjs.com/
+## LIBS
+### Qualidade de software
+> huskyjs 
+> 
+> https://github.com/typicode/husky
+
+> lint-staged
+>
+> https://github.com/okonet/lint-staged
+
+> git-commit-msg-linter
+>
+> https://www.npmjs.com/package/git-commit-msg-linter
+
+### Documentação
+> @compodoc/compodoc 
+> 
+> https://compodoc.app/
+
+### ORM 
+> Prisma
+> 
+>  https://www.prisma.io/

@@ -4,7 +4,7 @@ import { validate } from './common/config/env.validation';
 import { HashingModule } from './common/hashing/hashing.module';
 import { LoggerModule } from './common/loggers/logger.module';
 import { PrismaService } from './common/prisma/prisma.service';
-import { TenantsModule } from './modules/tenants/tenants.module';
+import { UsersModule } from './modules/users/users.module';
 import { MailModule } from './common/mail/mail.module';
 import { BullModule } from '@nestjs/bull';
 import { EventEmitterModule } from '@nestjs/event-emitter';
@@ -22,7 +22,7 @@ import MailConfig from './common/config/mail.config';
     EventEmitterModule.forRoot(),
     LoggerModule,
     HashingModule,
-    TenantsModule,
+    UsersModule,
     MailModule,
     BullModule.forRoot({
       redis: {
@@ -34,4 +34,4 @@ import MailConfig from './common/config/mail.config';
   controllers: [],
   providers: [PrismaService],
 })
-export class AppModule {}
+export class AppModule { }

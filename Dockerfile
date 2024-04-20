@@ -1,12 +1,26 @@
-FROM node:lts-alpine
+FROM node:lts
 
-RUN apk add --no-cache bash
+# Instalação do bash
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends \
+  bash && \
+  rm -rf /var/lib/apt/lists/*
 
-RUN apk add --no-cache openssl1.1-compat
-RUN apk add --no-cache libc6-compat
+# Instalação do OpenSSL
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends \
+  openssl && \
+  rm -rf /var/lib/apt/lists/*
 
+# Instalação das dependências libc6
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends \
+  libc6 && \
+  rm -rf /var/lib/apt/lists/*
+
+# Instalação do NestJS CLI
 RUN npm install -g @nestjs/cli
 
+# Configuração do usuário e diretório de trabalho
 USER node
-
 WORKDIR /home/node/app
