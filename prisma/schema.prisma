@@ -8,6 +8,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model FileUpload {
+  id               String         @id @default(uuid())
+  fileName         String
+  contentLength    Int
+  contentType      String
+  url              String
+  catalogProduct   CatalogProduct @relation(fields: [catalogProductid], references: [id])
+  catalogProductid String
+  Carousel         Carousel?      @relation(fields: [carouselId], references: [id])
+  carouselId       String?
+
+  @@map("file_upload")
+}
+
 model EmailConfirmation {
   id    String @id @default(uuid())
   email String
@@ -34,11 +48,18 @@ model CatalogProduct {
   urlImage    String
   description String
   alt         String
+
+  FileUpload FileUpload[]
+
+  @@map("catalog_product")
 }
 
 model Carousel {
-  id          String @id @default(uuid())
+  id          String       @id @default(uuid())
   urlImage    String
   description String
   alt         String
+  FileUpload  FileUpload[]
+
+  @@map("carousel")
 }

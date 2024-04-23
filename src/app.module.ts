@@ -8,6 +8,8 @@ import { UsersModule } from './modules/users/users.module';
 import { MailModule } from './common/mail/mail.module';
 import { BullModule } from '@nestjs/bull';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { FileUploadModule } from './common/file-upload/file-upload.module';
+import { CatalogProductModule } from './modules/catalog-product/catalog-product.module';
 import AppConfig from './common/config/app.config';
 import SwaggerConfig from './common/config/swagger.config';
 import MailConfig from './common/config/mail.config';
@@ -30,6 +32,9 @@ import MailConfig from './common/config/mail.config';
         port: 6379,
       },
     }),
+    FileUploadModule,
+    FileUploadModule,
+    CatalogProductModule,
   ],
   controllers: [],
   providers: [PrismaService],
