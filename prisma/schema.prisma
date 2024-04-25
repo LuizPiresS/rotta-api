@@ -9,15 +9,17 @@ datasource db {
 }
 
 model FileUpload {
-  id               String         @id @default(uuid())
-  fileName         String
-  contentLength    Int
-  contentType      String
-  url              String
-  catalogProduct   CatalogProduct @relation(fields: [catalogProductid], references: [id])
-  catalogProductid String
-  Carousel         Carousel?      @relation(fields: [carouselId], references: [id])
-  carouselId       String?
+  id            String @id @default(uuid())
+  fileName      String
+  contentLength Int
+  contentType   String
+  url           String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  CatalogProduct CatalogProduct[]
+  Carousel       Carousel[]
 
   @@map("file_upload")
 }
@@ -27,16 +29,20 @@ model EmailConfirmation {
   email String
   token String @unique
 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
   @@map("email_confirmation")
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String  @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String  @unique
   password  String
   token     String
   validated Boolean
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -44,22 +50,28 @@ model User {
 }
 
 model CatalogProduct {
-  id          String @id @default(uuid())
-  urlImage    String
+  id          String   @id @default(uuid())
   description String
   alt         String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
-  FileUpload FileUpload[]
+  FileUpload   FileUpload? @relation(fields: [fileUploadId], references: [id])
+  fileUploadId String?
 
   @@map("catalog_product")
 }
 
 model Carousel {
-  id          String       @id @default(uuid())
-  urlImage    String
+  id          String @id @default(uuid())
   description String
   alt         String
-  FileUpload  FileUpload[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  FileUpload   FileUpload? @relation(fields: [fileUploadId], references: [id])
+  fileUploadId String?
 
   @@map("carousel")
 }

@@ -13,6 +13,8 @@ import { CatalogProductModule } from './modules/catalog-product/catalog-product.
 import AppConfig from './common/config/app.config';
 import SwaggerConfig from './common/config/swagger.config';
 import MailConfig from './common/config/mail.config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -20,6 +22,9 @@ import MailConfig from './common/config/mail.config';
       validate,
       isGlobal: true,
       load: [AppConfig, SwaggerConfig, MailConfig],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
     }),
     EventEmitterModule.forRoot(),
     LoggerModule,

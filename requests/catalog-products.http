@@ -1,0 +1,22 @@
+POST /catalog-products HTTP/1.1
+Content-Type: multipart/form-data; boundary=---011000010111000001101001
+User-Agent: insomnia/9.0.0
+Description: teste
+Alt: teste
+Host: localhost:3000
+Content-Length: 378
+
+-----011000010111000001101001
+Content-Disposition: form-data; name="file"; filename="86629501_201103927942309_2841074570851516416_n.png"
+Content-Type: image/png
+
+
+-----011000010111000001101001
+Content-Disposition: form-data; name="description"
+
+teste
+-----011000010111000001101001
+Content-Disposition: form-data; name="alt"
+
+teste
+-----011000010111000001101001--
