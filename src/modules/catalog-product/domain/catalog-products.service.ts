@@ -20,6 +20,24 @@ export class CatalogProducstsService {
     private readonly configService: ConfigService,
   ) { }
 
+  public async updateProduct(
+    id: string,
+    input,
+    req: Request,
+    file?: Express.Multer.File,
+  ) {
+    if (!file) {
+      return this.catalogProductsRepository.update(id, input);
+    }
+    const newImage = await this.fileUploadService.uploadFile(file, req);
+    const updateProduct = await this.catalogProductsRepository.update(id, {
+      ...input,
+      fileUploadId: newImage.id,
+    });
+  }
+  deleteProduct(id: string) {
+    return this.catalogProductsRepository.delete(id);
+  }
   async createProduct(
     input: CatalogProductInputDto,
     req: Request,
@@ -34,11 +52,30 @@ export class CatalogProducstsService {
     return this.newProductToProductCatalogOutPut(newProduct, newImage);
   }
 
+  public async listAllProducts() {
+    const allProducts = await this.catalogProductsRepository.findAll();
+
+    const productWithUrls = await Promise.all(
+      allProducts.map(async (product) => {
+        const imageProduct = await this.fileUploadService.findFileById(
+          product.fileUploadId,
+        );
+        return {
+          ...product,
+          imageUrl: imageProduct.url,
+        };
+      }),
+    );
+
+    return productWithUrls;
+  }
+
   private async newProductToProductCatalogOutPut(
     productData: CatalogProduct,
     imageData,
   ): Promise<CatalogProductOutputDto> {
     return {
+      name: productData.name,
       description: productData.description,
       alt: productData.alt,
       imageId: imageData.id,

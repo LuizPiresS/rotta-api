@@ -1,6 +1,11 @@
-import { User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 
 export class UserEntity implements User {
+  fullName: string;
+  verified: boolean;
+  activated: boolean;
+  roles: Prisma.JsonValue;
+  deletedAt: Date;
   id: string;
   name: string;
   email: string;

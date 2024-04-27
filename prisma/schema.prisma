@@ -43,18 +43,21 @@ model User {
   token     String
   validated Boolean
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+  EmailToken EmailToken[]
 
   @@map("users")
 }
 
 model CatalogProduct {
-  id          String   @id @default(uuid())
+  id          String @id @default(uuid())
+  name        String
   description String
   alt         String
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   FileUpload   FileUpload? @relation(fields: [fileUploadId], references: [id])
   fileUploadId String?
@@ -74,4 +77,15 @@ model Carousel {
   fileUploadId String?
 
   @@map("carousel")
+}
+
+model EmailToken {
+  id       Int     @id @default(autoincrement())
+  email    String
+  token    String
+  verified Boolean @default(false) // O usuario poderá ter mais de um e-mail para contato.
+  user     User    @relation(fields: [userId], references: [id])
+  userId   String
+
+  @@map("email_token")
 }

@@ -1,9 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { UserNotFoundInterceptor } from './common/errors/interceptors/user-not-found.interceptor';
 import { ValidationPipe } from '@nestjs/common';
-import { EmailAlreadyRegisteredInterceptor } from './common/errors/interceptors/email-already-registered.interceptor';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
@@ -13,8 +11,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   // Interceptors
-  app.useGlobalInterceptors(new EmailAlreadyRegisteredInterceptor());
-  app.useGlobalInterceptors(new UserNotFoundInterceptor());
+  // app.useGlobalInterceptors(new EmailAlreadyRegisteredInterceptor());
+  // app.useGlobalInterceptors(new UserNotFoundInterceptor());
 
   // Swagger configuration
   console.log(process.env.SWAGGER_ENABLE);

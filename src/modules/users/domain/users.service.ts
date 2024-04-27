@@ -47,8 +47,6 @@ export class UsersService {
     const newUser = await this.userRepository.create({
       ...input,
       password: hashedPassword,
-      token: token,
-      validated: false,
     });
 
     return this.userToUserOutputDTO(newUser);
